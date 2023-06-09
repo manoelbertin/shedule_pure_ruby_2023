@@ -22,6 +22,22 @@ def add_contact
   @schedule << {name: name, phone: phone}
 end
 
+def show_contact
+  print "Type the Name: "
+  name = gets.chomp
+
+  @schedule.each do |contact|
+    if contact[:name].downcase.include?(name.downcase)
+      puts "Nome  -  Cellphone"
+      puts "#{contact[:name]} - #{contact[:phone]}"
+      break
+    else
+      puts "Name Not found!"
+      break
+    end
+  end
+end
+
 ####  MAIN CODE ####
 
 puts "************************* Schedule's Manoel Bertin **************************"
@@ -40,8 +56,9 @@ loop do
     puts "*************************************************************************"
   when code == 2
     add_contact
-  # when code == 3
-
+  when code == 3
+    show_contact
+    puts "*************************************************************************"
   # when code == 4
     
   # when code == 5

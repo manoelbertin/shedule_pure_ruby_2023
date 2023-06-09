@@ -1,4 +1,4 @@
-# by Manoel Bertin - June 4th, 2023.
+# by Manoel Bertin - June 4th,9th, 2023.
 @schedule = [
   {name: "DiegoC", phone: "9996-85256"},
   {name: "Isabel", phone: "8876-80056"},
@@ -11,6 +11,15 @@ def all_contacts
     i += 1
     puts "#{i}º #{contact[:name]} - #{contact[:phone]}"
   end
+end
+
+def add_contact
+  print "Name: "
+  name = gets.chomp
+  print "Cellphone: "
+  phone = gets.chomp
+
+  @schedule << {name: name, phone: phone}
 end
 
 ####  MAIN CODE ####
@@ -29,8 +38,8 @@ loop do
     puts "*************************************************************************"
     all_contacts
     puts "*************************************************************************"
-  # when code == 2
-
+  when code == 2
+    add_contact
   # when code == 3
 
   # when code == 4

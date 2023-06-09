@@ -24,16 +24,41 @@ end
 
 def show_contact
   print "Type the Name: "
-  name = gets.chomp
+  name = gets.chomp.downcase
 
   @schedule.each do |contact|
-    if contact[:name].downcase.include?(name.downcase)
+    if contact[:name].downcase == (name.downcase)
       puts "Nome  -  Cellphone"
       puts "#{contact[:name]} - #{contact[:phone]}"
       break
-    else
-      puts "Name Not found!"
+    # else
+    #   puts "Name Not found!"
+    #   break
+    end
+  end
+end
+
+def edit_contact
+  print "What name would you like to edit? "
+  name = gets.chomp
+
+  @schedule.each do |contact|
+    if contact[:name].downcase == (name.downcase)
+      print "Name to edit (or press ENTER, if you want to keep this one): "
+      name_salved = contact[:name]
+
+      contact[:name] = gets.chomp
+      contact[:name] = contact[:name].empty? ? name_salved : contact[:name] # ternário precisa de '?'
+
+      print "Cellphone to edit (or press ENTER, if you want to keep this one): "
+      phone_salved = contact[:phone]
+
+      contact[:phone] = gets.chomp
+      contact[:phone] = contact[:phone].empty? ? phone_salved : contact[:phone]
       break
+    # else
+    #   puts "Name Not found!"
+    #   break
     end
   end
 end
@@ -59,8 +84,9 @@ loop do
   when code == 3
     show_contact
     puts "*************************************************************************"
-  # when code == 4
-    
+  when code == 4
+    edit_contact
+    puts "*************************************************************************"
   # when code == 5
 
   when code == 0 

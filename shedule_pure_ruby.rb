@@ -1,8 +1,8 @@
 # by Manoel Bertin - June 4th,9th, 2023.
 @schedule = [
-  {name: "DiegoC", phone: "9996-85256"},
-  {name: "Isabel", phone: "8876-80056"},
-  {name: "Carlos", phone: "9600-00056"}
+  {name: "diegol", phone: "9996-85256"},
+  {name: "isabel", phone: "8876-80056"},
+  {name: "carlos", phone: "9600-00056"}
 ]
 
 def all_contacts
@@ -55,12 +55,25 @@ def edit_contact
       contact[:phone] = gets.chomp
       contact[:phone] = contact[:phone].empty? ? phone_salved : contact[:phone]
       break
-    # else
-    #   puts "Name Not found!"
-    #   break
     end
   end
 end
+
+def delete_contact
+  print "What's the name do you wanna to delete?"
+  name = gets.chomp
+
+  @schedule.each do |contact|
+    if contact[:name].downcase == (name.downcase)
+      position_array = @schedule.index(contact)
+      puts ""
+      puts "Name: '#{contact[:name]}' in the #{position_array + 1}º position deleted sucessful!"
+      @schedule.delete_at(position_array)
+      break
+    end
+  end
+end
+
 
 ####  MAIN CODE ####
 
@@ -86,10 +99,15 @@ loop do
   when code == 4
     edit_contact
     puts "*************************************************************************"
-  # when code == 5
-
+  when code == 5
+    delete_contact
+    puts "*************************************************************************"
+    all_contacts
+    puts "*************************************************************************"
   when code == 0 
     puts "**************************** GAME OVER **********************************"
     break
+  else 
+    puts "Error:  This option(number) NOT found!"
   end
 end

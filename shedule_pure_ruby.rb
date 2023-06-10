@@ -27,15 +27,12 @@ def show_contact
   name = gets.chomp.downcase
 
   @schedule.each do |contact|
-    if contact[:name].downcase.include?(name.downcase)
-    #if contact[:name].downcase == (name.downcase)
-      puts "Nome  -  Cellphone"
-      puts "#{contact[:name]} - #{contact[:phone]}"
-      break
-    # else
-    #   puts "Name Not found!"
-    #   break
-    end
+      if contact[:name].downcase.include?(name.downcase)
+        puts "Nome  -  Cellphone"
+        puts "#{contact[:name]} - #{contact[:phone]}"
+      end
+  # rescue
+  #     puts "Name Not found!"
   end
 end
 

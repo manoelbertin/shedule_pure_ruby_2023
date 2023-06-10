@@ -43,6 +43,7 @@ def edit_contact
   name = gets.chomp
 
   @schedule.each do |contact|
+    #if contact[:name].downcase.include?(name.downcase)
     if contact[:name].downcase == (name.downcase)
       print "Name to edit (or press ENTER, if you want to keep this one): "
       name_salved = contact[:name]

@@ -18,21 +18,31 @@ def add_contact
   name = gets.chomp
   print "Cellphone: "
   phone = gets.chomp
-
-  @schedule << {name: name, phone: phone}
+  if name.empty?
+    puts "Error: The 'Name' can Not be empty!"
+  end
+  @schedule.each do |contact|  
+    if contact[:name].downcase <=> name.downcase
+      puts "Error: There is already this name '#{name}'" 
+    else
+      @schedule << {name: name, phone: phone}
+    end
+    break
+  end
 end
 
 def show_contact
-  print "Type the Name: "
+  print "Type to find a name: "
   name = gets.chomp.downcase
 
   @schedule.each do |contact|
-      if contact[:name].downcase.include?(name.downcase)
-        puts "Nome  -  Cellphone"
-        puts "#{contact[:name]} - #{contact[:phone]}"
-      end
-  # rescue
-  #     puts "Name Not found!"
+    if contact[:name].downcase == name.downcase
+      puts "\nNome  -  Cellphone\n"
+      puts "#{contact[:name]} - #{contact[:phone]}"
+    else
+      puts "Error: The name '#{name}' Not found or 'string empty'!"
+       break
+    end
   end
 end
 
